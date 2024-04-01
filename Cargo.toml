@@ -1,0 +1,31 @@
+[package]
+name = "hax-6rr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.73"
+eframe = { version = "0.22.0", default-features = false, features = [
+    "accesskit",
+    "glow",
+    "wayland",
+] }
+num-derive = "0.4.0"
+num-traits = "0.2.16"
+prost = "0.11.9"
+reqwest = "0.11.18"
+serde = { version = "1.0.183", features = ["derive"] }
+serde_ini = "0.2.0"
+strum = { version = "0.25.0", features = ["derive"] }
+tokio = { version = "1", features = ["full"] }
+url = "2.4.1"
+
+[build-dependencies]
+prost-build = "0.11.9"
+
+[profile.release]
+lto = true
+panic = "abort"
+strip = "symbols"
+codegen-units = 1
+opt-level = "z"

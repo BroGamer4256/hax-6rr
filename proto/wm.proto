@@ -1,0 +1,2001 @@
+syntax = "proto2";
+
+package wm.protobuf;
+
+
+enum SystemConstant {
+  PROTOBUF_MESSAGE_REVISION = 12056;
+}
+
+enum ErrorCode {
+  ERR_SUCCESS = 0;
+  ERR_REQUEST = 1;
+  ERR_NOT_FOUND = 2;
+  ERR_ID_SERVER = 3;
+  ERR_ID_BANNED = 4;
+  ERR_USER_LOCKED = 5;
+  ERR_USER_VERSION = 6;
+  ERR_NAME_CONFLICTED = 7;
+  ERR_FORBIDDEN = 9;
+  ERR_USER_SUCCEEDED = 11;
+  ERR_BEING_TRANSFERRED = 12;
+  ERR_SCRATCH_LOCKED = 13;
+  ERR_BINGO_REVENGE_LOCKED = 14;
+  ERR_BINGO_ALREDY_LINKED = 15;
+  ERR_BINGO_FINISHED = 16;
+  ERR_BINGO_REACHED_MAX_USER = 17;
+  ERR_CAR_NOT_FOUND = 18;
+  ERR_BINGO_CARD_NOT_FOUND = 19;
+}
+
+enum LineType {
+  L_UNKNOWN = 0;
+  L_MOBILE = 1;
+  L_ISDN = 2;
+  L_BFLETS = 3;
+  L_ADSL = 4;
+  L_WIRED = 5;
+}
+
+enum TerminalType {
+  T_DRIVE = 0;
+  T_TERMINAL = 1;
+}
+
+enum DeviceType {
+  DEVICE_CARD = 0;
+  DEVICE_PHONE = 1;
+}
+
+enum ItemCategory {
+  CAT_CUSTOM_COLOR = 1;
+  CAT_WHEEL = 2;
+  CAT_AERO = 3;
+  CAT_BONNET = 4;
+  CAT_WING = 5;
+  CAT_MIRROR = 6;
+  CAT_NEON = 8;
+  CAT_TRUNK = 9;
+  CAT_NUMBER_PLATE = 10;
+  CAT_GT_WING = 12;
+  CAT_AURA_MOTIF = 14;
+  CAT_METER = 15;
+  CAT_BGM = 16;
+  CAT_NAME_PLATE = 17;
+  CAT_CUSTOM_FRAME = 18;
+  CAT_NUMBER = 19;
+  CAT_BGM_TRACK = 22;
+  CAT_WINDOW_STICKER_FONT = 24;
+  CAT_WINDOW_DECORATION = 25;
+  CAT_RIVAL_MARKER = 26;
+  CAT_STAMP = 27;
+  CAT_TERMINAL_BACKGROUND = 28;
+  CAT_CAR_TICKET = 201;
+  CAT_CONSUMPTION_ITEM = 202;
+  CAT_CAR_TICKET_FREE = 203;
+  CAT_CAR_TITLE = 400;
+  CAT_AERO_FULLSET = 300;
+  CAT_AERO_LIMITED = 301;
+}
+
+enum TutorialType {
+  TUTORIAL_ID_STORY = 0;
+  TUTORIAL_ID_TIME_ATTACK = 1;
+  TUTORIAL_ID_GHOST = 2;
+  TUTORIAL_ID_GHOST_CHALLENGE = 3;
+  TUTORIAL_ID_UNUSED_4 = 4;
+  TUTORIAL_ID_UNUSED_5 = 5;
+  TUTORIAL_ID_GHOST_SEARCH = 6;
+  TUTORIAL_ID_GHOST_COMPETITION = 7;
+  TUTORIAL_ID_HP600_CARD = 8;
+  TUTORIAL_ID_UNUSED_9 = 9;
+  TUTORIAL_ID_COMPETITION_QUALIFIED = 10;
+  TUTORIAL_ID_COMPETITION_TERMINAL = 11;
+  TUTORIAL_ID_COMPETITION_NOTICE = 12;
+  TUTORIAL_ID_COMPETITION_FINISHED = 13;
+  TUTORIAL_ID_UNUSED_14 = 14;
+  TUTORIAL_ID_UNUSED_15 = 15;
+  TUTORIAL_ID_UNUSED_16 = 16;
+  TUTORIAL_ID_UNUSED_17 = 17;
+  TUTORIAL_ID_UNUSED_18 = 18;
+  TUTORIAL_ID_UNUSED_19 = 19;
+  TUTORIAL_ID_GHOST_STAMP = 20;
+  TUTORIAL_ID_GHOST_STAMP_DECLINED = 21;
+  TUTORIAL_ID_GHOST_STAMP_FRIENDS = 22;
+  TUTORIAL_ID_TERMINAL_SCRATCH = 23;
+  TUTORIAL_ID_TURN_SCRATCH_SHEET = 24;
+  TUTORIAL_ID_INVITE_FRIEND_CAMPAIGN = 25;
+  TUTORIAL_ID_CAR_COUPON_FULL_TUNED_RECEIVABLE = 26;
+  TUTORIAL_ID_VS_CONTINUE_TICKET = 27;
+  TUTORIAL_ID_UNUSED_28 = 28;
+  TUTORIAL_ID_UNUSED_29 = 29;
+  TUTORIAL_ID_UNUSED_30 = 30;
+  TUTORIAL_ID_DRESS_UP = 31;
+  TUTORIAL_ID_UNUSED_32 = 32;
+  TUTORIAL_ID_STORY_NEW_FEATURE = 33;
+  TUTORIAL_ID_GHOST_NEW_FEATURE = 34;
+  TUTORIAL_ID_UNUSED_35 = 35;
+  TUTORIAL_ID_GHOST_EXPEDITION_NEW = 36;
+  TUTORIAL_ID_GHOST_EXPEDITION_WANTED = 37;
+  TUTORIAL_ID_GHOST_EXPEDITION_WANTED2 = 38;
+  TUTORIAL_ID_GHOST_EXPEDITION_REWARD = 39;
+  TUTORIAL_ID_MULTI_GHOST_VS_2 = 40;
+  TUTORIAL_ID_MULTI_GHOST_VS_3 = 41;
+  TUTORIAL_ID_GHOST_SELECT_BY_OTHER_PLACE = 42;
+  TUTORIAL_ID_GHOST_SELECT_BY_MANUFACTURER = 43;
+  TUTORIAL_ID_GHOST_SELECT_BY_OTHER_MANUFACTURER = 44;
+  TUTORIAL_ID_GHOST_SELECT_BY_PLAYED = 45;
+  TUTORIAL_ID_GHOST_HIGHWAY_NEW = 46;
+  TUTORIAL_ID_GHOST_HIGHWAY_STATION = 47;
+  TUTORIAL_ID_GHOST_HIGHWAY_BOSS = 48;
+  TUTORIAL_ID_GHOST_TROPHY = 49;
+  TUTORIAL_ID_GHOST_SELECT = 50;
+  TUTORIAL_ID_GHOST_SELECT_BY_SAME_PLACE = 51;
+  TUTORIAL_ID_GHOST_BINGO_NEW = 52;
+  TUTORIAL_ID_UNUSED_53 = 53;
+  TUTORIAL_ID_GHOST_BINGO_LINK = 54;
+  TUTORIAL_ID_GHOST_KOSHIEN_NEW = 55;
+  TUTORIAL_ID_GHOST_KOSHIEN_NOTICE = 56;
+  TUTORIAL_ID_GHOST_KOSHIEN_MVP_UPDATE = 57;
+  TUTORIAL_ID_BINGO_LUCKY_CHANCE = 58;
+  TUTORIAL_ID_GHOST_KOSHIEN_FINISHED = 59;
+  TUTORIAL_ID_GHOST_KOSHIEN_AFTEREVENT = 60;
+  TUTORIAL_ID_GHOST_BINGO_AREA = 61;
+}
+
+enum GameMode {
+  MODE_STORY = 1;
+  MODE_TIME_ATTACK = 2;
+  MODE_VS_BATTLE = 3;
+  MODE_GHOST_BATTLE = 4;
+  MODE_EVENT = 5;
+}
+
+enum GhostType {
+  GHOST_NORMAL = 1;
+  GHOST_PINCH_RUNNER = 2;
+  GHOST_DEFAULT = 3;
+  GHOST_REGION = 4;
+  GHOST_REGION_PINCH_RUNNER = 5;
+}
+
+enum GhostSelectionMethod {
+  GHOST_SEARCH_BY_REGION = 1;
+  GHOST_SELECT_BY_LEVEL = 2;
+  GHOST_SELECT_CROWN_MATCH = 3;
+  GHOST_SELECT_STAMP_MATCH = 4;
+  GHOST_SELECT_FROM_HISTORY = 5;
+  GHOST_SEARCH_BY_SHOP = 6;
+  GHOST_SEARCH_BY_NAME = 7;
+  GHOST_ACCEPT_CHALLENGER = 8;
+  GHOST_APPOINTMENT = 9;
+  GHOST_DEFAULT_OPPONENT = 10;
+  GHOST_COMPETITION = 11;
+  GHOST_SELECT_FROM_BOOKMARKS = 12;
+  GHOST_EXPEDITION = 13;
+  GHOST_SELECT_BY_PLACE = 14;
+  GHOST_SELECT_BY_OTHER_PLACE = 15;
+  GHOST_SELECT_BY_MANUFACTURER = 16;
+  GHOST_SELECT_BY_OTHER_MANUFACTURER = 17;
+  GHOST_SELECT_BY_PLAYED = 18;
+  GHOST_UNUSED_19 = 19;
+  GHOST_SELECT_BY_REGION_MANUFACTURER = 20;
+  GHOST_UNUSED_21 = 21;
+  GHOST_SELECT_BY_REGION_PLAYED = 22;
+  GHOST_SELECT_BY_REGION_STATION = 23;
+  GHOST_SELECT_BY_REGION_BOSS = 24;
+  GHOST_SELECT_BY_REGION_PLACE = 25;
+  GHOST_BINGO_CHALLENGE = 26;
+  GHOST_KOSHIEN = 27;
+}
+
+enum GhostRateType {
+  GHOST_RATE_UNKNOWN = 1;
+  GHOST_RATE_INVALID = 2;
+  GHOST_RATE_VALID = 3;
+}
+
+enum PathSelectionMethod {
+  PATH_NEW = 1;
+  PATH_PLAIN = 2;
+  PATH_FRIEND = 3;
+  PATH_NORMAL = 4;
+  PATH_CHALLENGER = 5;
+}
+
+enum NoticeEntry {
+  NOTICE_UNUSED_1 = 1;
+  NOTICE_UNUSED_2 = 2;
+  NOTICE_UNUSED_3 = 3;
+  NOTICE_UNUSED_4 = 4;
+  NOTICE_UNUSED_5 = 5;
+  NOTICE_UNUSED_6 = 6;
+  NOTICE_UNUSED_7 = 7;
+  NOTICE_UNUSED_8 = 8;
+  NOTICE_UNUSED_9 = 9;
+  NOTICE_UNUSED_10 = 10;
+  NOTICE_UNUSED_11 = 11;
+  NOTICE_UNUSED_12 = 12;
+}
+
+enum FileType {
+  FILE_PROMOTION_ANNOUNCEMENT = 1;
+  FILE_FEATURE_ANNOUNCEMENT = 4;
+  FILE_SPAPP_ANNOUNCEMENT = 6;
+  FILE_TRIAL_ANNOUNCEMENT = 7;
+}
+
+enum GhostCompetitionParticipantState {
+  COMPETITION_NOT_PARTICIPATED = 1;
+  COMPETITION_QUALIFIED = 2;
+  COMPETITION_PARTICIPATED = 3;
+  COMPETITION_WON = 4;
+}
+
+enum GhostExpeditionParticipantState {
+  EXPEDITION_NOT_PARTICIPATED = 1;
+  EXPEDITION_PARTICIPATED = 2;
+  EXPEDITION_RESULT_CONFIRMED = 3;
+}
+
+enum GhostKoshienParticipantState {
+  KOSHIEN_NOT_PARTICIPATED = 1;
+  KOSHIEN_FIRST_QUALIFIED = 2;
+  KOSHIEN_SECOND_QUALIFIED = 3;
+  KOSHIEN_REGION_PARTICIPATED = 4;
+  KOSHIEN_PARTICIPATED = 5;
+  KOSHIEN_FIRST_QUALIFIED_LOSE = 6;
+  KOSHIEN_SECOND_QUALIFIED_LOSE = 7;
+  KOSHIEN_REGION_PARTICIPATED_LOSE = 8;
+  KOSHIEN_WON = 9;
+  KOSHIEN_UNUSED = 10;
+}
+
+enum ScreenshotType {
+  SS_GHOST_BATTLE = 1;
+  SS_VERSUS_BATTLE = 2;
+  SS_TERMINAL = 3;
+  SS_ACQUIRING_VERSUS_STAR = 4;
+  SS_ACQUIRING_AURA_MOTIF = 5;
+  SS_GHOST_TROPHY = 6;
+  SS_ACQUIRING_CROWN = 7;
+  SS_GHOST_COMPETITION_RESULT = 8;
+  SS_TIME_ATTACK_RESULT = 9;
+  SS_LEVEL_UP = 10;
+  SS_GHOST_KOSHIEN_RESULT = 11;
+}
+
+enum TransferState {
+  NOT_REGISTERED = 0;
+  NEW_REGISTRATION = 1;
+  TRANSFER_REQUIRED = 2;
+  TRANSFERRING = 3;
+  TRANSFERRED = 4;
+}
+
+enum EventModeSerialErrorCode {
+  SERIAL_SUCCESS = 0;
+  SERIAL_ATTEMPT_TO_CHANGE = 1;
+  SERIAL_NO_INPUT = 2;
+  SERIAL_INVALID = 3;
+  SERIAL_EXPIRED = 4;
+  SERIAL_OTHER_PLACE = 5;
+}
+
+enum ClientLogType {
+  LOG_LOAD_REPORT = 0;
+  LOG_ERROR = 1;
+}
+
+enum SmartphoneAppState {
+  SPAPP_UNREGISTERED = 0;
+  SPAPP_KTID = 1;
+  SPAPP_BNID = 2;
+}
+
+enum MethodType {
+  MT_LOAD_CAR = 1;
+  MT_LOAD_GHOST_DRIVE_DATA = 2;
+  MT_LOAD_USER = 3;
+  MT_REGISTER_GHOST_TRAIL = 4;
+  MT_REGISTER_SYSTEM_INFO = 5;
+  MT_SAVE_CHARGE = 6;
+  MT_SAVE_GAME_RESULT = 7;
+  MT_SAVE_SCREENSHOT = 8;
+  RS_GHOST_TRAIL = 9;
+}
+
+message RegisterSystemInfoRequest {
+  message ErrorLogEntry {
+    required uint32 datetime = 1;
+    required string message = 2;
+  }
+
+  required string pcb_serial = 1;
+  required TerminalType terminal_type = 2;
+  required uint32 rom_version = 3;
+  required string country = 4;
+  required LineType line_type = 5;
+  required string shop_name = 6;
+  required string shop_nickname = 7;
+  optional uint32 allnet_place_id = 8;
+  optional uint32 allnet_region0 = 9;
+  optional string mucha_place_id = 10;
+  optional uint32 mucha_prefecture_id = 11;
+  required string region_name0 = 12;
+  required string region_name1 = 13;
+  required string region_name2 = 14;
+  required string region_name3 = 15;
+  required sint32 timezone_offset = 16;
+  required SystemSetting system_setting = 17;
+  repeated ErrorLogEntry error_logs = 18;
+  optional string pcb_serial_second = 19;
+}
+
+message RegisterSystemInfoResponse {
+  message GhostKoshienInfo {
+    required GhostKoshienSchedule koshien_schedule = 1;
+    required GhostKoshienPrize koshien_prize = 2;
+    required bool reception = 3;
+    optional bool is_koshien_shop = 4;
+    required bool qualified = 5;
+  }
+
+  required ErrorCode error = 1;
+  required uint32 region_id = 2;
+  required string place_id = 3;
+  repeated ClientLogType allowed_client_log_types = 4 [packed = true];
+  required GameFeatureVersion feature_version = 10;
+  optional uint32 latest_competition_id = 11;
+  optional GhostCompetitionSchedule competition_schedule = 12;
+  optional string scratch_notes = 19;
+  optional InviteFriendCampaignSchedule invite_friend_campaign_schedule = 27;
+  required uint32 ghost_selection_min_redo_wait = 28;
+  required uint32 ghost_selection_max_redo_wait = 29;
+  optional GhostExpeditionSchedule expedition_schedule = 30;
+  optional bool expedition_event_was_held = 31;
+  repeated uint32 bingo_numbers = 32;
+  repeated BingoPrize bingo_prize = 33;
+  repeated GhostKoshienWonShop koshien_won_shop_name = 35;
+  optional GhostKoshienInfo koshien_info = 37;
+  optional bool koshien_event_was_held = 38;
+  optional CarItem special_present_item = 39;
+  optional uint32 previous_koshien_id = 40;
+  optional GhostKoshienPrize previous_koshien_prize = 41;
+}
+
+message RegisterSystemStatsRequest {
+  message DriveStats {
+    repeated uint32 operation = 1 [packed = true];
+    repeated uint32 story = 2 [packed = true];
+    repeated uint32 versus = 3 [packed = true];
+    repeated uint32 ghost = 4 [packed = true];
+    repeated uint32 time_attack = 5 [packed = true];
+    repeated uint32 event = 6 [packed = true];
+  }
+
+  message TerminalStats {
+    repeated uint32 operation = 1 [packed = true];
+  }
+
+  required string pcb_serial = 1;
+  optional DriveStats drive_stats = 2;
+  optional TerminalStats terminal_stats = 3;
+}
+
+message RegisterSystemStatsResponse {
+  required ErrorCode error = 1;
+}
+
+message RegisterGhostTrailRequest {
+  required uint64 ghost_session_id = 1;
+  required GhostCar ghost = 2;
+  required bytes trail = 3;
+  optional uint32 time = 4;
+  optional BinaryData drive_data = 5;
+  optional BinaryData trend_binary_by_area = 6;
+  optional BinaryData trend_binary_by_car = 7;
+  optional BinaryData trend_binary_by_user = 8;
+}
+
+message RegisterGhostTrailResponse {
+  required ErrorCode error = 1;
+}
+
+message LoadUserRequest {
+  optional string card_chip_id = 1;
+  optional string access_code = 2;
+  optional uint32 card_type_code = 3;
+  optional uint32 card_region_code = 4;
+  optional DeviceType device = 5;
+  optional uint32 user_id = 6;
+  required uint32 rom_version = 7;
+  required uint32 max_cars = 8;
+  optional bool create_user = 9;
+}
+
+message LoadUserResponse {
+  message CarState {
+    required bool has_opponent_ghost = 1;
+    optional GhostCompetitionParticipantState competition_state = 2;
+    required bool to_be_deleted = 4;
+    required bool event_joined = 5;
+    required bool transferred = 6;
+    optional uint32 drive_last_played_at = 7;
+    optional GhostKoshienParticipantState koshien_state = 8;
+    optional bool koshien_qualified = 9;
+  }
+
+  required ErrorCode error = 1;
+  optional uint32 unlock_at = 2;
+  optional string access_code = 3;
+  optional uint32 banapassport_am_id = 4;
+  optional uint32 mbid = 5;
+  optional uint32 user_id = 6;
+  required uint32 num_of_owned_cars = 10;
+  repeated Car cars = 11;
+  repeated CarState car_states = 12;
+  repeated UserItem unused_car_tickets = 13;
+  required bool full_tuned_car_ticket = 14;
+  repeated bool tutorials = 15;
+  optional GhostCompetitionParticipantState competition_user_state = 17;
+  optional string window_sticker_string = 19;
+  optional uint32 window_sticker_font = 20;
+  required SmartphoneAppState spapp_state = 21;
+  required TransferState transfer_state = 22;
+  optional uint32 total_vs_star_count = 25;
+  optional uint32 total_vs_medal_point = 26;
+  optional CopiedCar copied_car = 27;
+  optional bool was_created_today = 28;
+  optional bool participated_in_invite_friend_campaign = 29;
+  optional uint32 special_gift_count = 30;
+  optional uint32 gift_complete_count = 31;
+  optional uint32 default_special_gift_count = 32;
+  optional bool ghost_expedition_locked = 33;
+  required bool ghost_vs_2_locked = 34;
+  required bool ghost_vs_3_locked = 35;
+  required bool ghost_highway_locked = 36;
+  required uint32 bingo_mismatch_number_acquired_count = 38;
+  repeated BingoPrize previous_acquired_bingo_prize = 39;
+  optional GhostKoshienParticipantState koshien_user_state = 41;
+  optional GhostKoshienParticipantState koshien_last_played_state = 45;
+  optional string koshien_regist_place_id = 43;
+  required uint32 received_num_of_items = 42;
+  required uint32 bingo_played_count = 44;
+}
+
+message UpdateUserSessionRequest {
+  optional uint32 user_id = 1;
+  optional string card_chip_id = 2;
+  optional string access_code = 3;
+  optional uint32 card_type_code = 4;
+  optional uint32 card_region_code = 5;
+  optional DeviceType device = 6;
+  required uint32 unlock_at = 7;
+  optional bool accept_vs = 8;
+}
+
+message UpdateUserSessionResponse {
+  required ErrorCode error = 1;
+}
+
+message LoadDriveInformationRequest {
+  optional uint32 user_id = 1;
+}
+
+message LoadDriveInformationResponse {
+  required ErrorCode error = 1;
+  repeated NoticeEntry notice_window = 2;
+  repeated string notice_window_message = 3;
+  optional TransferNotice transfer_notice = 4;
+  repeated uint32 restricted_models = 6;
+  optional bool announce_feature = 7;
+  optional bool announce_mobile = 8;
+  repeated UserItem available_tickets = 9;
+}
+
+message LoadCarRequest {
+  required uint32 car_id = 1;
+  optional bool event_mode = 2;
+  optional string event_mode_serial = 3;
+  optional bool rental_mode = 4;
+}
+
+message LoadCarResponse {
+  message StoryInsurance {
+    required uint32 num_of_remains = 1;
+  }
+
+  required ErrorCode error = 1;
+  required Car car = 2;
+  required uint32 tuning_point = 3;
+  required uint32 odometer = 6;
+  required uint32 play_count = 7;
+  required bool earned_custom_color = 8;
+  required CarSetting setting = 10;
+  required uint32 vs_play_count = 12;
+  required uint32 vs_burst_count = 13;
+  required uint32 vs_star_count = 14;
+  required uint32 vs_star_count_max = 15;
+  required sint32 vs_cool_or_wild = 16;
+  required sint32 vs_smooth_or_rough = 17;
+  required uint32 vs_triple_star_medals = 18;
+  required uint32 vs_double_star_medals = 19;
+  required uint32 vs_single_star_medals = 20;
+  required uint32 vs_plain_medals = 21;
+  required uint32 rg_play_count = 22;
+  required uint32 rg_win_count = 23;
+  required uint32 rg_trophy = 24;
+  required uint32 rg_previous_version_play_count = 64;
+  required uint32 rg_score = 25;
+  required uint32 rg_score_vs_2 = 70;
+  optional uint32 rg_expedition_score = 66;
+  repeated uint32 rg_region_map_score = 26;
+  repeated uint32 rg_regions = 30;
+  required uint32 rg_stamp = 27;
+  required bool rg_acquire_all_crowns = 59;
+  required uint32 rg_highway_clear_count = 67;
+  required uint32 rg_highway_point = 68;
+  required uint32 rg_highway_station_clear_bits = 69;
+  required uint32 rg_highway_previous_dice = 71;
+  required uint32 dressup_level = 28;
+  required uint32 dressup_point = 29;
+  required uint32 st_play_count = 34;
+  required uint32 st_clear_bits = 35;
+  required uint32 st_clear_div_count = 36;
+  required uint32 st_clear_count = 37;
+  required uint64 st_lose_bits = 38;
+  required uint32 st_consecutive_wins = 40;
+  required uint32 st_consecutive_wins_max = 41;
+  required bool st_completed_100_episodes = 63;
+  optional ChallengerCar challenger = 42;
+  optional uint32 challenger_return_count = 43;
+  optional uint32 num_of_stamp_target_cars = 72;
+  optional GhostCar opponent_ghost = 44;
+  optional uint64 opponent_trail_id = 45;
+  optional uint32 opponent_competition_id = 46;
+  optional GhostCompetitionParameter competition_parameter = 47;
+  repeated string special_titles = 48;
+  repeated string earned_titles = 49;
+  repeated CarItem owned_items = 50;
+  required bool aura_motif_auto_change = 51;
+  required uint32 screenshot_count = 53;
+  optional bool announce_event_mode_prize = 58;
+  optional uint32 drive_last_played_at = 61;
+  optional StoryInsurance insurance = 62;
+  optional GhostExpeditionParticipantState ghost_expedition_state = 65;
+  repeated CarItem koshien_prize = 73;
+}
+
+message CreateCarRequest {
+  optional uint32 user_id = 1;
+  optional uint32 banapassport_am_id = 2;
+  optional string card_chip_id = 3;
+  optional string access_code = 4;
+  optional uint32 card_type_code = 5;
+  optional uint32 card_region_code = 6;
+  optional DeviceType device = 7;
+  required Car car = 8;
+  required bool transmission = 9;
+  required uint32 timestamp = 11;
+  optional uint32 user_item_id = 12;
+  optional uint32 deleted_car_id = 13;
+}
+
+message CreateCarResponse {
+  required ErrorCode error = 1;
+  optional string access_code = 2;
+  optional uint32 banapassport_am_id = 3;
+  optional uint32 mbid = 4;
+  required uint32 user_id = 5;
+  required uint32 car_id = 6;
+  optional uint32 st_clear_bits = 8;
+  optional uint32 st_clear_div_count = 9;
+  optional uint32 st_clear_count = 10;
+  optional uint64 st_lose_bits = 11;
+  optional uint32 st_consecutive_wins = 13;
+  optional uint32 st_consecutive_wins_max = 14;
+  optional uint32 full_tuned_car_coupon_unreceivable_at = 17;
+}
+
+message LoadGameHistoryRequest {
+  required uint32 car_id = 1;
+}
+
+message LoadGameHistoryResponse {
+  message TimeAttackRecord {
+    required uint32 course = 1;
+    optional uint32 time = 2;
+    optional uint32 tune_power = 3;
+    optional uint32 tune_handling = 4;
+    optional uint32 whole_rank = 5;
+    required uint32 whole_participants = 6;
+    optional uint32 model_rank = 7;
+    required uint32 model_participants = 8;
+  }
+
+  message GhostBattleRecord {
+    message GhostCarSetting {
+      required uint32 tune_power = 1;
+      required uint32 tune_handling = 2;
+    }
+
+    message GhostBattleRecordCar {
+      required Car car = 1;
+      required int32 result = 2;
+    }
+
+    required GhostCarSetting car_setting = 1;
+    required GhostBattleRecordCar opponent = 2;
+    repeated GhostBattleRecordCar mobs = 3;
+    required uint32 area = 4;
+    required uint32 played_at = 5;
+    required string played_shop_name = 6;
+  }
+
+  required ErrorCode error = 1;
+  repeated TimeAttackRecord ta_records = 2;
+  required uint32 ta_ranking_updated_at = 3;
+  repeated GhostBattleRecord ghost_history = 4;
+  required uint32 ghost_battle_count = 5;
+  required uint32 ghost_battle_win_count = 6;
+  required uint32 stamp_sheet_count = 7;
+  repeated uint32 stamp_sheet = 8;
+}
+
+message UpdateCarRequest {
+  required uint32 car_id = 1;
+  optional Car car = 2;
+  repeated CarItem earned_items = 4;
+  optional CarSetting setting = 5;
+  optional bool to_be_deleted = 9;
+  optional bool aura_motif_auto_change = 10;
+  optional uint32 rg_stamp = 12;
+  required uint32 timestamp = 13;
+}
+
+message UpdateCarResponse {
+  required ErrorCode error = 1;
+}
+
+message SaveGameResultRequest {
+  message StoryResult {
+    required uint32 st_play_count = 1;
+    required uint32 st_played_story = 9;
+    optional uint32 tuning_point = 2;
+    optional uint32 st_clear_bits = 3;
+    optional uint32 st_clear_div_count = 4;
+    optional uint32 st_clear_count = 5;
+    optional uint64 st_lose_bits = 6;
+    optional uint32 st_consecutive_wins = 8;
+    optional bool st_completed_100_episodes = 10;
+    optional bool is_insurance_used = 11;
+  }
+
+  message TimeAttackResult {
+    required uint32 time = 1;
+    required uint32 course = 2;
+    required bool is_morning = 12;
+    required uint32 section_1_time = 3;
+    required uint32 section_2_time = 4;
+    required uint32 section_3_time = 5;
+    required uint32 section_4_time = 6;
+    optional uint32 section_5_time = 7;
+    optional uint32 section_6_time = 8;
+    optional uint32 section_7_time = 9;
+    optional uint32 whole_rank = 10;
+    optional uint32 model_rank = 11;
+  }
+
+  message VersusBattleResult {
+    required uint32 result = 1;
+    required bool survived = 2;
+    repeated uint32 opponent_car_id = 3;
+    required uint32 num_of_players = 5;
+    required uint32 area = 17;
+    required bool is_morning = 18;
+    required uint32 vs_play_count = 6;
+    optional uint32 vs_burst_count = 7;
+    optional uint32 vs_star_count = 8;
+    optional uint32 vs_star_count_max = 15;
+    optional sint32 vs_cool_or_wild = 9;
+    optional sint32 vs_smooth_or_rough = 10;
+    optional uint32 vs_triple_star_medals = 11;
+    optional uint32 vs_double_star_medals = 12;
+    optional uint32 vs_single_star_medals = 13;
+    optional uint32 vs_plain_medals = 14;
+  }
+
+  message GhostBattleResult {
+    message GhostExpeditionResult {
+      required uint32 ghost_expedition_id = 1;
+      optional uint32 sugoroku_point = 2;
+      optional uint32 earned_score = 3;
+      optional uint32 score = 4;
+      optional uint32 wanted_id = 5;
+      repeated UserItem earned_items = 6;
+      repeated bool afterevent_bonus = 7;
+    }
+
+    message GhostHighwayResult {
+      required uint32 rg_highway_clear_count = 1;
+      required uint32 rg_highway_point = 2;
+      required uint32 rg_highway_station_clear_bits = 3;
+      required uint32 rg_highway_previous_dice = 4;
+      required uint32 rg_highway_region_id = 5;
+    }
+
+    message GhostBattleOpponent {
+      required sint32 result = 1;
+      required uint32 car_id = 2;
+      required uint32 tune_power = 3;
+      required uint32 tune_handling = 4;
+      optional bool receive_stamp = 5;
+      optional uint32 bingo_number = 6;
+    }
+
+    repeated GhostBattleOpponent opponents = 1;
+    required uint32 path = 3;
+    required bool is_morning = 25;
+    required GhostSelectionMethod selection_method = 4;
+    optional uint32 stamp_sheet_count = 5;
+    repeated uint32 stamp_sheet = 6;
+    optional uint32 rg_stamp = 23;
+    repeated uint32 confirmed_transferred_stamp_target_car_ids = 24;
+    required uint32 rg_play_count = 8;
+    optional uint32 dressup_level = 10;
+    optional uint32 dressup_point = 11;
+    optional uint32 rg_trophy = 27;
+    repeated uint32 rg_region_map_score = 14;
+    optional uint32 competition_id = 16;
+    optional uint32 period_id = 17;
+    optional uint32 braking_point = 18;
+    optional bool acquire_crown = 20;
+    optional bool acquire_all_crowns = 21;
+    optional GhostExpeditionResult expedition_result = 26;
+    optional GhostHighwayResult highway_result = 28;
+    optional uint32 koshien_id = 30;
+    optional uint32 koshien_period_id = 31;
+    optional uint32 koshien_update_count = 32;
+  }
+
+  required uint32 car_id = 1;
+  required GameMode game_mode = 2;
+  required uint32 played_at = 3;
+  required uint32 play_count = 4;
+  required bool retired = 5;
+  required bool timeup = 6;
+  optional bool no_credit = 10;
+  optional Car car = 7;
+  optional CarSetting setting = 8;
+  optional uint32 odometer = 9;
+  optional bool earned_custom_color = 11;
+  repeated TutorialType confirmed_tutorials = 12;
+  repeated CarItem earned_items = 13;
+  repeated UserItem earned_user_items = 14;
+  repeated string preserved_titles = 15;
+  repeated uint32 neighbor_cars = 21;
+  optional StoryResult st_result = 22;
+  optional TimeAttackResult ta_result = 23;
+  optional VersusBattleResult vs_result = 24;
+  optional GhostBattleResult rg_result = 25;
+  optional GhostKoshienParticipantState koshien_last_played_state = 26;
+}
+
+message SaveGameResultResponse {
+  required ErrorCode error = 1;
+  optional uint64 ghost_session_id = 2;
+  repeated UserItem available_tickets = 3;
+}
+
+message SaveChargeRequest {
+  message ChargeLog {
+    required uint32 datetime = 1;
+    required string pcb_serial = 2;
+    required string place_id = 3;
+    optional uint32 user_id = 4;
+  }
+
+  repeated ChargeLog charge_logs = 1;
+}
+
+message SaveChargeResponse {
+  required ErrorCode error = 1;
+}
+
+message LoadGhostBattleInfoRequest {
+  required uint32 car_id = 1;
+}
+
+message LoadGhostBattleInfoResponse {
+  message WeakenedCar {
+    required uint32 car_id = 1;
+    required uint32 consecutive_losses = 2;
+  }
+
+  required ErrorCode error = 1;
+  repeated FriendCar friend_cars = 2;
+  repeated ChallengerCar challengers = 3;
+  repeated StampTargetCar stamp_target_cars = 4;
+  repeated PreviousVersionStampTargetCar previous_version_stamp_target_cars = 12;
+  repeated BookmarkedCar bookmarked_cars = 11;
+  required bool promoted_to_buddy = 13;
+  repeated Car history = 5;
+  repeated WeakenedCar weakened_cars = 10;
+  required uint32 stamp_sheet_count = 7;
+  repeated uint32 stamp_sheet = 8;
+  repeated uint32 stamp_return_stats = 9;
+  repeated uint32 acquired_bingo_numbers = 15;
+}
+
+message LoadStampTargetRequest {
+  required uint32 car_id = 1;
+  required bool need_to_promote = 2;
+}
+
+message LoadStampTargetResponse {
+  required ErrorCode error = 1;
+  repeated StampTargetCar cars = 2;
+  repeated ChallengerCar challengers = 3;
+}
+
+message LockStampTargetRequest {
+  required uint32 car_id = 1;
+  repeated uint32 target_cars = 2;
+}
+
+message LockStampTargetResponse {
+  required ErrorCode error = 1;
+}
+
+message LoadGhostCompetitionInfoRequest {
+  required uint32 car_id = 1;
+  required uint32 competition_id = 2;
+}
+
+message LoadGhostCompetitionInfoResponse {
+  required ErrorCode error = 1;
+  optional uint32 period_id = 2;
+  required bool closed = 3;
+  optional uint32 braking_point = 4;
+  optional bool qualified = 5;
+  repeated sint32 top_results = 6 [packed = true];
+  optional sint32 result = 7;
+  optional uint32 rank = 8;
+  repeated float parameters1 = 9;
+  optional bool parameters2 = 10;
+}
+
+message LoadGhostKoshienInfoRequest {
+  required uint32 car_id = 1;
+  required uint32 koshien_id = 2;
+  required string place_id = 3;
+}
+
+message LoadGhostKoshienInfoResponse {
+  required ErrorCode error = 1;
+  optional uint32 koshien_period_id = 2;
+  required bool closed = 3;
+  optional sint32 result = 5;
+  optional uint32 rank = 6;
+  repeated Place top_shop = 7;
+  repeated float parameters = 9;
+  required bool is_ghost_control = 10;
+  repeated sint32 top_results = 12 [packed = true];
+}
+
+message LoadTimeAttackRecordRequest {
+  optional uint32 car_id = 1;
+  required uint32 model = 2;
+  required uint32 course = 3;
+}
+
+message LoadTimeAttackRecordResponse {
+  required ErrorCode error = 1;
+  repeated uint32 whole_ranking = 2 [packed = true];
+  repeated uint32 model_ranking = 3 [packed = true];
+  optional uint32 personal_best_time = 4;
+  optional uint32 pb_section_1_time = 5;
+  optional uint32 pb_section_2_time = 6;
+  optional uint32 pb_section_3_time = 7;
+  optional uint32 pb_section_4_time = 8;
+  optional uint32 pb_section_5_time = 9;
+  optional uint32 pb_section_6_time = 10;
+  optional uint32 pb_section_7_time = 11;
+}
+
+message SaveTerminalResultRequest {
+  required uint32 user_id = 1;
+  required uint32 timestamp = 2;
+  repeated uint32 car_order = 3;
+  repeated TutorialType confirmed_tutorials = 5;
+  optional bool garage_menu_entered = 8;
+}
+
+message SaveTerminalResultResponse {
+  required ErrorCode error = 1;
+}
+
+message PingRequest {
+  optional uint32 ping = 1;
+}
+
+message PingResponse {
+  required ErrorCode error = 1;
+  required uint32 pong = 2;
+}
+
+message LoadTerminalInformationRequest {
+  required uint32 user_id = 1;
+}
+
+message LoadTerminalInformationResponse {
+  message TerminalNotice {
+    required NoticeEntry notice_type = 1;
+    optional string field_1 = 2;
+    optional uint32 field_2 = 3;
+    optional uint32 field_3 = 4;
+  }
+
+  required ErrorCode error = 1;
+  required bool prize_receivable = 17;
+  repeated TerminalNotice notice_entries = 10;
+  repeated string notice_message = 11;
+  repeated NoticeEntry notice_window = 12;
+  repeated string notice_window_message = 13;
+  required TransferNotice transfer_notice = 14;
+  required bool announce_feature = 16;
+  required bool free_scratched = 18;
+  repeated uint32 restricted_models = 2;
+  repeated UserItem available_tickets = 19;
+}
+
+message CreateUserRequest {
+  optional uint32 banapassport_am_id = 1;
+  optional string card_chip_id = 2;
+  optional string access_code = 3;
+  optional uint32 card_type_code = 4;
+  optional uint32 card_region_code = 5;
+  optional DeviceType device = 6;
+  required uint32 timestamp = 7;
+}
+
+message CreateUserResponse {
+  required ErrorCode error = 1;
+  optional string access_code = 2;
+  optional uint32 banapassport_am_id = 3;
+  optional uint32 mbid = 4;
+  required uint32 user_id = 5;
+}
+
+message AskAccessCodeRequest {
+  required string card_chip_id = 1;
+}
+
+message AskAccessCodeResponse {
+  required ErrorCode error = 1;
+  required string access_code = 2;
+}
+
+message RegisterOpponentGhostRequest {
+  required uint32 car_id = 1;
+  required uint32 special_ghost_id = 2;
+}
+
+message RegisterOpponentGhostResponse {
+  required ErrorCode error = 1;
+}
+
+message GrantCarRightRequest {
+  required uint32 user_id = 1;
+  required uint32 target_user_id = 2;
+  required uint32 timestamp = 3;
+}
+
+message GrantCarRightResponse {
+  required ErrorCode error = 1;
+}
+
+message LoadGhostCompetitionRankingRequest {
+  required uint32 car_id = 1;
+  required uint32 competition_id = 2;
+}
+
+message LoadGhostCompetitionRankingResponse {
+  message Entry {
+    required uint32 rank = 1;
+    required sint32 result = 2;
+    required uint32 car_id = 3;
+    required string name = 4;
+    required uint32 region_id = 5;
+    required uint32 model = 6;
+    required uint32 visual_model = 7;
+    required uint32 default_color = 8;
+    required string title = 10;
+    required uint32 level = 11;
+    optional string window_sticker_string = 12;
+    required string played_shop_name = 13;
+    required uint32 played_at = 14;
+  }
+
+  required ErrorCode error = 1;
+  optional uint32 period_id = 2;
+  required uint32 num_of_participants = 3;
+  optional GhostCompetitionSchedule competition_schedule = 4;
+  optional Entry own_record = 5;
+  repeated Entry top_records = 6;
+}
+
+message LoadGhostKoshienRankingRequest {
+  required uint32 car_id = 1;
+  required uint32 koshien_id = 2;
+  required string place_id = 3;
+  required uint32 round_id = 4;
+}
+
+message LoadGhostKoshienRankingResponse {
+  message UserInfo {
+    required sint32 result = 1;
+    required uint32 region_id = 2;
+    required string place_id = 3;
+    required string name = 4;
+    required uint32 model = 5;
+    repeated GhostKoshienRoundRank round_rank = 6;
+    required uint32 visual_model = 7;
+    required uint32 default_color = 8;
+  }
+
+  message Entry {
+    required uint32 rank = 1;
+    required sint32 result = 2;
+    required uint32 region_id = 3;
+    required string place_id = 4;
+    required uint32 model = 5;
+    required string shop_name = 6;
+    required uint32 played_at = 7;
+    required uint32 visual_model = 8;
+    required uint32 default_color = 9;
+  }
+
+  message Record {
+    required uint32 challenge_count = 1;
+    required uint32 update_count = 2;
+    required sint32 result = 3;
+  }
+
+  message PlaceRecord {
+    message ParticipantCar {
+      required uint32 car_id = 1;
+      optional sint32 result = 2;
+      optional uint32 challenge_count = 3;
+      optional uint32 update_count = 4;
+    }
+
+    repeated ParticipantCar challenge_count = 1;
+    repeated ParticipantCar update_count = 2;
+    repeated ParticipantCar result = 3;
+  }
+
+  required ErrorCode error = 1;
+  repeated bool round_qualified = 8;
+  optional GhostKoshienSchedule koshien_schedule = 3;
+  optional UserInfo own_ranking_entry = 4;
+  repeated Entry ranking_entries = 5;
+  optional uint32 ranking_updated_at = 10;
+  optional Record own_record = 6;
+  optional PlaceRecord place_record = 9;
+}
+
+message LoadGhostKoshienRoundRequest {
+  required uint32 user_id = 3;
+  required uint32 koshien_id = 2;
+  required uint32 round_id = 4;
+}
+
+message LoadGhostKoshienRoundResponse {
+  message GhostKoshienRepresentedCar {
+    required Car represented_car = 6;
+    optional Place represented_shop = 5;
+  }
+
+  optional Place participant_shop = 1;
+  required bool current_qualified = 2;
+  optional bool previous_round_qualified = 3;
+  repeated GhostKoshienRepresentedCar koshien_represented_car = 4;
+}
+
+message LoadGhostKoshienMvpRequest {
+  required uint32 user_id = 3;
+  required uint32 koshien_id = 2;
+  required uint32 round_id = 4;
+}
+
+message LoadGhostKoshienMvpResponse {
+  message GhostKoshienMvpCar {
+    required Car mvp_car = 9;
+    optional sint32 result = 6;
+    optional uint32 challenge_count = 7;
+    optional uint32 update_count = 8;
+  }
+
+  required string shop_name = 1;
+  required GhostKoshienMvpCar result_mvp_car = 2;
+  required GhostKoshienMvpCar challenge_mvp_car = 3;
+  required GhostKoshienMvpCar update_mvp_car = 4;
+}
+
+message LoadUnreceivedUserItemsRequest {
+  required uint32 user_id = 1;
+}
+
+message LoadUnreceivedUserItemsResponse {
+  required ErrorCode error = 1;
+  repeated UserItem owned_user_items = 7;
+}
+
+message LoadBookmarksRequest {
+  required uint32 user_id = 1;
+}
+
+message LoadBookmarksResponse {
+  required ErrorCode error = 1;
+  repeated Car cars = 2;
+}
+
+message SaveBookmarksRequest {
+  required uint32 user_id = 1;
+  repeated uint32 cars = 2;
+}
+
+message SaveBookmarksResponse {
+  required ErrorCode error = 1;
+}
+
+message StartTransferRequest {
+  required uint32 banapassport_am_id = 1;
+}
+
+message StartTransferResponse {
+  required ErrorCode error = 1;
+  required uint32 user_id = 2;
+  optional uint32 polling_interval = 3;
+}
+
+message SaveScreenshotRequest {
+  message OpponentCar {
+    optional uint32 car_id = 1;
+    required uint32 tune_power = 2;
+    required uint32 tune_handling = 3;
+  }
+
+  message GhostBattleMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    required uint32 area = 3;
+    required uint32 stamp_return_count = 4;
+    repeated OpponentCar opponents = 6;
+  }
+
+  message VersusBattleMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    required uint32 area = 3;
+    repeated OpponentCar opponents = 4;
+  }
+
+  message TerminalMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    required string name = 3;
+    required string title = 4;
+    required uint32 level = 5;
+  }
+
+  message AcquiringVersusStarMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    required uint32 vs_star_count = 3;
+  }
+
+  message AcquiringAuraMotifMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    required uint32 aura_motif = 3;
+  }
+
+  message GhostTrophyMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    required uint32 rg_score = 3;
+  }
+
+  message AcquiringCrownMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    required uint32 area = 3;
+  }
+
+  message GhostCompetitionResultMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    optional uint32 rank = 3;
+    required sint32 result = 4;
+  }
+
+  message TimeAttackResultMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    required uint32 course = 3;
+    optional uint32 whole_rank = 4;
+    optional uint32 model_rank = 5;
+  }
+
+  message LevelUpMetadata {
+    required uint32 tune_power = 2;
+    required uint32 tune_handling = 3;
+    required uint32 level = 1;
+  }
+
+  message GhostKoshienResultMetadata {
+    required uint32 tune_power = 1;
+    required uint32 tune_handling = 2;
+    optional uint32 rank = 3;
+    required sint32 result = 4;
+  }
+
+  required uint32 car_id = 1;
+  required uint32 timestamp = 2;
+  optional uint32 played_at = 9;
+  optional bool transparent = 8;
+  required ScreenshotType image_type = 3;
+  optional bytes image = 4;
+  optional GhostBattleMetadata ghost_metadata = 5;
+  optional VersusBattleMetadata versus_metadata = 6;
+  optional TerminalMetadata terminal_metadata = 7;
+  optional AcquiringVersusStarMetadata acquiring_vs_star_metadata = 10;
+  optional AcquiringAuraMotifMetadata acquiring_aura_motif_metadata = 11;
+  optional GhostTrophyMetadata ghost_trophy_metadata = 12;
+  optional AcquiringCrownMetadata acquiring_crown_metadata = 13;
+  optional GhostCompetitionResultMetadata competition_result_metadata = 14;
+  optional TimeAttackResultMetadata time_attack_result_metadata = 15;
+  optional LevelUpMetadata level_up_metadata = 16;
+  optional GhostKoshienResultMetadata koshien_result_metadata = 17;
+}
+
+message SaveScreenshotResponse {
+  required ErrorCode error = 1;
+}
+
+message SubmitClientLogRequest {
+  required bytes data = 1;
+  required uint32 modified_at = 2;
+  required ClientLogType log_type = 3;
+}
+
+message SubmitClientLogResponse {
+  required ErrorCode error = 1;
+}
+
+message LoadScratchInformationRequest {
+  required uint32 user_id = 1;
+}
+
+message LoadScratchInformationResponse {
+  required ErrorCode error = 1;
+  repeated ScratchSheet scratch_sheets = 2;
+  required uint32 current_sheet = 3;
+  required uint32 num_of_scratched = 4;
+  repeated UserItem owned_user_items = 5;
+}
+
+message SaveScratchSheetRequest {
+  required uint32 timestamp = 7;
+  required uint32 target_sheet = 1;
+  required uint32 target_square = 2;
+  required uint32 user_id = 3;
+}
+
+message SaveScratchSheetResponse {
+  required ErrorCode error = 1;
+  repeated ScratchSheet scratch_sheets = 2;
+  required uint32 current_sheet = 3;
+  required uint32 num_of_scratched = 4;
+  optional UserItem earned_item = 5;
+}
+
+message TurnScratchSheetRequest {
+  required uint32 user_id = 1;
+  required uint32 target_sheet = 2;
+}
+
+message TurnScratchSheetResponse {
+  required ErrorCode error = 1;
+}
+
+message CheckItemReceivableCarsRequest {
+  required uint32 user_id = 1;
+  repeated UserItem items_to_be_earned = 2;
+}
+
+message CheckItemReceivableCarsResponse {
+  required ErrorCode error = 1;
+  repeated uint32 car_ids = 2;
+}
+
+message ReceiveUserItemsRequest {
+  required uint32 car_id = 1;
+  repeated uint32 target_item_ids = 2;
+}
+
+message ReceiveUserItemsResponse {
+  required ErrorCode error = 1;
+}
+
+message UpdateEventModeSerialRequest {
+  optional string event_mode_serial = 1;
+}
+
+message UpdateEventModeSerialResponse {
+  required ErrorCode error = 1;
+  required EventModeSerialErrorCode serial_error = 4;
+  optional string event_mode_serial = 2;
+  optional uint32 start_at = 5;
+  optional uint32 end_at = 3;
+}
+
+message ParticipateInInviteFriendCampaignRequest {
+  required uint32 inviting_user_id = 1;
+  required uint32 invited_user_id = 2;
+  required uint32 source_car_id = 3;
+  required bool transmission = 4;
+}
+
+message ParticipateInInviteFriendCampaignResponse {
+  required ErrorCode error = 1;
+}
+
+message ConsumeUserItemRequest {
+  required uint32 user_id = 1;
+  required uint32 car_id = 2;
+  required uint32 user_item_id = 3;
+}
+
+message ConsumeUserItemResponse {
+  required ErrorCode error = 1;
+}
+
+message SearchCarsByLevelRequest {
+  required uint32 car_id = 1;
+  required uint32 ghost_level = 2;
+  required uint32 area = 3;
+  optional uint32 region_id = 4;
+}
+
+message SearchCarsByLevelResponse {
+  message Rate {
+    required uint32 car_id = 1;
+    required GhostRateType type = 2;
+    optional uint32 rate = 3;
+  }
+
+  required ErrorCode error = 1;
+  required uint32 ramp = 2;
+  required uint32 path = 3;
+  repeated GhostCar ghosts = 4;
+  required PathSelectionMethod selection_method = 5;
+  repeated Rate rates = 6;
+}
+
+message SearchCarsRequest {
+  required uint32 car_id = 1;
+  required GhostSelectionMethod selection_method = 2;
+  required uint32 area = 3;
+  required string place_id = 4;
+  optional int32 region_id = 5;
+  optional string select_place_id = 7;
+  optional uint32 select_manufacturer = 8;
+  optional uint32 default_ghost_id = 6;
+}
+
+message SearchCarsResponse {
+  message Rate {
+    required uint32 car_id = 1;
+    required GhostRateType type = 2;
+    optional uint32 rate = 3;
+  }
+
+  required ErrorCode error = 1;
+  required uint32 ramp = 2;
+  required uint32 path = 3;
+  repeated GhostCar ghosts = 4;
+  required PathSelectionMethod selection_method = 5;
+  repeated Rate rates = 6;
+}
+
+message LoadPathsAndTuningsRequest {
+  required uint32 car_id = 1;
+  repeated uint32 selected_cars = 2;
+  optional bool return_immediately = 3;
+  optional uint32 stamp_target_area = 4;
+}
+
+message LoadPathsAndTuningsResponse {
+  message CarTuningsByPath {
+    required uint32 area = 1;
+    required uint32 ramp = 2;
+    required uint32 path = 3;
+    repeated CarTuning car_tunings = 4;
+    required PathSelectionMethod selection_method = 5;
+  }
+
+  required ErrorCode error = 1;
+  repeated CarTuningsByPath data = 2;
+}
+
+message LoadGhostDriveDataRequest {
+  required uint32 path = 1;
+  repeated CarTuning car_tunings = 2;
+}
+
+message LoadGhostDriveDataResponse {
+  message GhostDriveData {
+    required uint32 car_id = 1;
+    required GhostType type = 2;
+    optional BinaryData drive_data = 3;
+    optional BinaryData trend_binary_by_user = 4;
+    optional BinaryData trend_binary_by_car = 5;
+    optional BinaryData trend_binary_by_area = 6;
+  }
+
+  required ErrorCode error = 1;
+  repeated GhostDriveData data = 2;
+}
+
+message LoadGhostExpeditionInfoRequest {
+  required uint32 ghost_expedition_id = 1;
+  required uint32 car_id = 2;
+}
+
+message LoadGhostExpeditionInfoResponse {
+  required ErrorCode error = 1;
+  optional uint32 sugoroku_point = 2;
+  optional uint32 score = 3;
+  required uint32 local_score = 4;
+  optional uint32 consecutive_losses = 5;
+  optional uint32 rescued_sugoroku_point = 6;
+  repeated CarEntry rescuers = 7;
+  repeated uint32 afterevent_battled_cars = 9;
+}
+
+message LoadGhostExpeditionTargetByPathRequest {
+  required uint32 ghost_expedition_id = 1;
+  required uint32 car_id = 2;
+}
+
+message LoadGhostExpeditionTargetByPathResponse {
+  message AreaStats {
+    message WantedInfo {
+      required uint32 wanted_level = 1;
+      required uint32 num_of_wanted_cars = 2;
+    }
+
+    required uint32 area = 1;
+    required uint32 path = 2;
+    repeated WantedInfo wanted_info = 3;
+  }
+
+  required ErrorCode error = 1;
+  repeated AreaStats areas = 2;
+  optional PathSelectionMethod selection_method = 3;
+}
+
+message LoadGhostExpeditionTargetsRequest {
+  required uint32 ghost_expedition_id = 1;
+  required uint32 car_id = 2;
+  required uint32 path = 3;
+}
+
+message LoadGhostExpeditionTargetsResponse {
+  required ErrorCode error = 1;
+  repeated GhostCar candidates = 2;
+  repeated WantedCar wanted_cars = 3;
+  required uint32 local_score = 4;
+  repeated CarEntry recent_winners = 5;
+}
+
+message LoadGhostExpeditionResultRequest {
+  required uint32 ghost_expedition_id = 1;
+  required uint32 car_id = 2;
+}
+
+message LoadGhostExpeditionResultResponse {
+  required ErrorCode error = 1;
+  required uint32 score = 2;
+  required uint32 local_score = 3;
+  repeated GhostExpeditionRankingEntry local_ranking = 4;
+}
+
+message SaveNetworkStatRequest {
+  message RequestLog {
+    required MethodType type = 1;
+    required uint32 request = 2;
+    required uint32 timed_out = 3;
+    required uint32 retry = 6;
+    required uint32 failed = 7;
+    required uint32 retry_max_reached = 4;
+    required uint32 response_average = 5;
+  }
+
+  required uint32 rtt = 1;
+  required uint32 request = 2;
+  required uint32 timed_out = 3;
+  required uint32 retry = 7;
+  required uint32 failed = 8;
+  required uint32 timestamp = 4;
+  required uint32 ping_failed = 5;
+  repeated RequestLog logs = 6;
+}
+
+message SaveNetworkStatResponse {
+  required ErrorCode error = 1;
+}
+
+message LoadGhostBingoTargetsRequest {
+  required uint32 car_id = 1;
+  required uint32 area = 3;
+}
+
+message LoadGhostBingoTargetsResponse {
+  message Rate {
+    required uint32 car_id = 1;
+    required GhostRateType type = 2;
+    optional uint32 rate = 3;
+  }
+
+  required ErrorCode error = 1;
+  repeated GhostCar ghosts = 2;
+  required PathSelectionMethod selection_method = 4;
+  repeated Rate rates = 5;
+}
+
+message LoadBingoStatsRequest {
+  required uint32 user_id = 1;
+}
+
+message LoadBingoStatsResponse {
+  required ErrorCode error = 1;
+  repeated uint32 acquired_bingo_numbers = 3;
+  required uint32 received_num_of_items = 5;
+  required bool unreceived_items = 6;
+}
+
+message BingoReceivableItemsRequest {
+  required uint32 user_id = 1;
+}
+
+message BingoReceivableItemsResponse {
+  required ErrorCode error = 1;
+  repeated UserItem owned_user_items = 2;
+}
+
+message MergeBingoCardRequest {
+  message User {
+    optional string card_chip_id = 1;
+    optional string access_code = 2;
+    optional uint32 card_type_code = 3;
+    optional uint32 card_region_code = 4;
+    optional DeviceType device = 5;
+  }
+
+  repeated User user_list = 1;
+}
+
+message MergeBingoCardResponse {
+  message CardBeforeMerge {
+    required ErrorCode error = 1;
+    optional TransferState transfer_state = 2;
+    optional uint32 car_id = 3;
+    optional string car_name = 4;
+    optional uint32 unlock_at = 5;
+    repeated uint32 acquired_bingo_numbers = 6;
+  }
+
+  required ErrorCode error = 1;
+  repeated CardBeforeMerge card_before_merge_list = 2;
+  repeated uint32 acquired_bingo_numbers = 3;
+}
+
+message Car {
+  optional uint32 car_id = 1;
+  optional uint32 user_id = 2;
+  optional uint32 region_id = 3;
+  optional string name = 4;
+  optional uint32 manufacturer = 5;
+  optional uint32 model = 6;
+  optional uint32 visual_model = 7;
+  optional uint32 default_color = 8;
+  required uint32 custom_color = 9;
+  required uint32 wheel = 10;
+  required uint32 wheel_color = 11;
+  required uint32 aero = 12;
+  required uint32 bonnet = 13;
+  required uint32 wing = 14;
+  optional GTWing gt_wing = 15;
+  required uint32 mirror = 16;
+  required uint32 neon = 24;
+  required uint32 trunk = 25;
+  required uint32 plate = 26;
+  required uint32 plate_color = 27;
+  required uint32 plate_number = 28;
+  required uint32 tune_power = 31;
+  required uint32 tune_handling = 32;
+  required string title = 33;
+  required uint32 level = 34;
+  optional bool window_sticker = 35;
+  optional string window_sticker_string = 37;
+  optional uint32 window_sticker_font = 38;
+  optional uint32 window_decoration = 39;
+  optional uint32 rival_marker = 41;
+  optional uint32 last_played_at = 45;
+  optional Place last_played_place = 46;
+  optional uint32 aura = 47;
+  optional uint32 aura_motif = 48;
+  optional uint32 ghost_level = 49;
+  optional string country = 50;
+  optional string search_code = 51;
+  optional uint32 custom_frame = 52;
+}
+
+message CarSetting {
+  optional uint32 car_id = 1;
+  required bool view = 2;
+  required bool transmission = 3;
+  required bool retire = 4;
+  required uint32 meter = 5;
+  required bool navigation_map = 6;
+  required uint32 volume = 7;
+  required uint32 bgm = 8;
+  required uint32 nameplate = 9;
+  required uint32 nameplate_color = 10;
+  required uint32 terminal_background = 13;
+}
+
+message GTWing {
+  required uint32 pillar = 1;
+  required uint32 pillar_material = 2;
+  required uint32 main_wing = 3;
+  required uint32 main_wing_color = 4;
+  required uint32 wing_tip = 5;
+  required uint32 material = 6;
+}
+
+message CarItem {
+  required ItemCategory category = 1;
+  required uint32 item_id = 2;
+  optional uint32 amount = 3;
+}
+
+message CopiedCar {
+  required Car car = 1;
+  required uint32 remaining_play_counts = 2;
+}
+
+message FriendCar {
+  required Car car = 1;
+  optional uint32 friendship_level = 2;
+  required bool nonhuman = 3;
+}
+
+message ChallengerCar {
+  required Car car = 1;
+  required uint32 stamp = 3;
+  required sint32 result = 4;
+  required uint32 area = 5;
+}
+
+message StampTargetCar {
+  required Car car = 1;
+  required uint32 return_count = 2;
+  required bool locked = 3;
+}
+
+message BookmarkedCar {
+  required Car car = 1;
+  required uint32 return_count = 2;
+}
+
+message PreviousVersionStampTargetCar {
+  required Car car = 1;
+  required uint32 return_count = 3;
+  optional uint32 current_car_id = 2;
+}
+
+message GhostCar {
+  required Car car = 1;
+  optional uint32 area = 2;
+  optional uint32 ramp = 3;
+  optional uint32 path = 8;
+  optional bool nonhuman = 4;
+  optional GhostType type = 6;
+  optional uint64 trail_id = 7;
+}
+
+message Place {
+  required string place_id = 1;
+  required string shop_name = 2;
+  required uint32 region_id = 3;
+  required string country = 4;
+}
+
+message SystemSetting {
+  required uint32 mCoinChute = 1;
+  required uint32 mBuyCardCost = 2;
+  required uint32 mGameCost = 3;
+  required uint32 mContinueCost = 4;
+  required uint32 mFullCourseCost = 5;
+  required bool mFreePlay = 6;
+  optional uint32 mPcbId = 7;
+  required bool mIcCardRw = 8;
+  required bool mIcCardVender = 9;
+  optional bool mMgCardRw = 10;
+  optional bool mForceFeedback = 11;
+  required bool mWinsAndRemains = 12;
+  required uint32 mEventMode = 13;
+  required bool mEventModeDist = 14;
+  required uint32 mCloseType = 15;
+  required uint32 mCloseSun = 16;
+  required uint32 mCloseMon = 17;
+  required uint32 mCloseTue = 18;
+  required uint32 mCloseWed = 19;
+  required uint32 mCloseThu = 20;
+  required uint32 mCloseFri = 21;
+  required uint32 mCloseSat = 22;
+  required uint32 mCloseDay = 23;
+  optional bool mTouchPanel = 24;
+  required uint32 mGameVol = 25;
+  required uint32 mAttractVol = 26;
+  optional uint32 mCalibHandleCenter = 27;
+  optional uint32 mCalibAccelCenter = 28;
+  optional uint32 mCalibBrakeCenter = 29;
+  optional uint32 mCalibTouchLeft = 30;
+  optional uint32 mCalibTouchRight = 31;
+  optional uint32 mCalibTouchTop = 32;
+  optional uint32 mCalibTouchBottom = 33;
+}
+
+message GhostCompetitionSchedule {
+  required uint32 competition_id = 1;
+  required uint32 qualifying_period_start_at = 2;
+  required uint32 qualifying_period_close_at = 3;
+  required uint32 competition_start_at = 4;
+  required uint32 competition_close_at = 5;
+  required uint32 competition_end_at = 6;
+  required uint32 length_of_period = 7;
+  required uint32 length_of_interval = 8;
+  required uint32 area = 9;
+  required uint32 minigame_pattern_id = 10;
+}
+
+message GhostKoshienSchedule {
+  required uint32 koshien_id = 1;
+  required uint32 qualifying_first_period_start_at = 2;
+  required uint32 qualifying_first_period_close_at = 3;
+  required uint32 qualifying_second_period_start_at = 4;
+  required uint32 qualifying_second_period_close_at = 5;
+  required uint32 region_final_start_at = 6;
+  required uint32 region_final_close_at = 7;
+  required uint32 koshien_start_at = 9;
+  required uint32 koshien_close_at = 10;
+  required uint32 length_of_period = 12;
+  required uint32 length_of_interval = 13;
+  required uint32 area = 14;
+  required uint32 afterevent_start_at = 15;
+  required uint32 afterevent_end_at = 16;
+}
+
+message GhostKoshienPrize {
+  required CarItem first_participation_prize = 1;
+  required CarItem second_participation_prize = 2;
+  required CarItem region_participation_prize = 3;
+  required CarItem participation_prize = 4;
+  required CarItem first_mvp_prize = 5;
+  required CarItem second_mvp_prize = 6;
+  required CarItem region_mvp_prize = 7;
+  required CarItem mvp_prize = 8;
+  required CarItem winner_prize = 9;
+  required CarItem second_place_prize = 10;
+  required CarItem afterevent_rival_marker = 11;
+  required string afterevent_special_title = 12;
+}
+
+message GhostKoshienWonShop {
+  required uint32 koshien_id = 1;
+  required string shop_name = 2;
+  required uint32 rank = 3;
+}
+
+message GhostKoshienRoundRank {
+  required uint32 round_id = 1;
+  required uint32 rank = 2;
+}
+
+message GhostCompetitionParameter {
+  repeated float parameters1 = 1;
+  required bool parameters2 = 2;
+}
+
+message TransferNotice {
+  required bool need_to_see_transferred = 1;
+}
+
+message GameFeatureVersion {
+  required uint32 version = 1;
+  required uint32 year = 2;
+  required uint32 month = 3;
+  required uint32 pluses = 4;
+  required uint32 release_at = 5;
+}
+
+message ScratchSheet {
+  message ScratchSquare {
+    required ItemCategory category = 1;
+    required uint32 item_id = 2;
+    required bool earned = 3;
+  }
+
+  repeated ScratchSquare squares = 1;
+}
+
+message UserItem {
+  required ItemCategory category = 1;
+  required uint32 item_id = 2;
+  optional uint32 user_item_id = 3;
+  optional uint32 earned_at = 4;
+  optional uint32 expire_at = 5;
+  optional string title_name = 6;
+}
+
+message InviteFriendCampaignSchedule {
+  required uint32 campaign_id = 1;
+  required uint32 start_at = 2;
+  required uint32 end_at = 3;
+  required uint32 coupon_unreceivable_at = 4;
+}
+
+message GhostExpeditionSchedule {
+  required uint32 ghost_expedition_id = 1;
+  required uint32 start_at = 2;
+  required uint32 end_at = 3;
+  required uint32 afterevent_end_at = 4;
+  required string opponent_country = 5;
+}
+
+message GhostExpeditionRankingEntry {
+  optional uint32 rank = 1;
+  required uint32 score = 2;
+  required Car car = 3;
+}
+
+message WantedCar {
+  required GhostCar ghost = 1;
+  required uint32 wanted_id = 2;
+  required uint32 bonus = 3;
+  required uint32 num_of_hostages = 4;
+  optional uint32 defeated_me_count = 6;
+  optional CarEntry hostage = 5;
+}
+
+message CarEntry {
+  required string name = 1;
+  required uint32 level = 2;
+  required string title = 3;
+  required uint32 model = 4;
+  required uint32 visual_model = 5;
+  required uint32 default_color = 6;
+  optional uint32 score = 7;
+}
+
+message BingoRevengeCar {
+  required GhostCar ghost = 1;
+  required uint32 revenge_number = 2;
+  required bool locked = 3;
+}
+
+message BingoPrize {
+  required uint32 bingo_patterns = 1;
+  required ItemCategory category = 2;
+  required uint32 item_id = 3;
+}
+
+message CarTuning {
+  required uint32 car_id = 1;
+  required uint32 tune_power = 2;
+  required uint32 tune_handling = 3;
+  optional uint32 last_played_at = 4;
+  optional GhostType type = 5;
+}
+
+message BinaryData {
+  required bytes data = 1;
+  required sint32 merge_serial = 2;
+}
+
+message GhostTrail {
+  required uint32 car_id = 1;
+  required uint32 area = 2;
+  required uint32 ramp = 3;
+  required uint32 path = 7;
+  required uint32 played_at = 4;
+  optional Place played_place = 5;
+  required bytes trail = 6;
+}
+
+message PlaceList {
+  repeated Place places = 1;
+}
+
+message GhostList {
+  repeated GhostCar ghosts = 1;
+}
+
+message CarSummary {
+  required uint32 hit_count = 1;
+  repeated Car cars = 2;
+}
+
+message FileList {
+  message FileInfo {
+    required uint32 file_id = 1;
+    required FileType file_type = 2;
+    required uint32 file_size = 3;
+    required string url = 4;
+    required bytes sha1sum = 5;
+    required uint32 not_before = 6;
+    required uint32 not_after = 7;
+  }
+
+  repeated FileInfo files = 1;
+  optional uint32 interval = 2;
+}
+
+message GhostCompetitionTarget {
+  required uint32 competition_id = 1;
+  optional uint32 special_ghost_id = 2;
+  required GhostCar ghost_car = 3;
+  required uint64 trail_id = 4;
+  required uint32 updated_at = 5;
+  optional GhostCompetitionSchedule competition_schedule = 6;
+}
+
+message GhostKoshienParticipatingShop {
+  message ParticipantShop {
+    required string name = 1;
+    required uint32 region_id = 2;
+  }
+
+  required uint32 koshien_id = 1;
+  repeated GhostKoshienRoundRank round_rank = 2;
+  repeated ParticipantShop participant_store = 3;
+}
+
+message GhostExpeditionRanking {
+  required uint32 local_score = 1;
+  optional GhostExpeditionRankingEntry todays_mvp = 2;
+  repeated GhostExpeditionRankingEntry local_ranking = 3;
+}
+
+message GhostExpeditionParticipants {
+  required string place_id = 1;
+  repeated uint32 participant_cars = 2;
+}
+
+message GhostKoshienTarget {
+  required uint32 koshien_id = 1;
+  required GhostCar ghost_car = 3;
+  required uint64 trail_id = 4;
+  required uint32 updated_at = 5;
+  required uint32 koshien_period_id = 7;
+  optional uint32 region_id = 8;
+  optional Place participant_shop = 9;
+}
+

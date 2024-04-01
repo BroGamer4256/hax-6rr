@@ -1,0 +1,170 @@
+syntax = "proto2";
+
+package wm.protobuf;
+
+option cc_generic_services = true;
+
+import "wm.proto";
+
+enum RankingType {
+  RANKING_TA_C1IN = 0;
+  RANKING_TA_C1OUT = 1;
+  RANKING_TA_RINGLEFT = 2;
+  RANKING_TA_RINGRIGHT = 3;
+  RANKING_TA_SUBTOKYO_3_4 = 4;
+  RANKING_TA_SUBTOKYO_5 = 5;
+  RANKING_TA_WANGANEAST = 6;
+  RANKING_TA_WANGANWEST = 7;
+  RANKING_TA_K1_DOWN = 8;
+  RANKING_TA_K1_UP = 9;
+  RANKING_TA_YAESUIN = 10;
+  RANKING_TA_YAESUOUT = 11;
+  RANKING_TA_YOKOHAMAIN = 12;
+  RANKING_TA_YOKOHAMAOUT = 13;
+  RANKING_TA_NAGOYA = 14;
+  RANKING_TA_OSAKA = 15;
+  RANKING_TA_KOBE = 16;
+  RANKING_TA_FUKUOKA = 17;
+  RANKING_TA_HAKONEFOR = 18;
+  RANKING_TA_HAKONEBACK = 19;
+  RANKING_TA_TURNPIKE_UP = 20;
+  RANKING_TA_TURNPIKE_DOWN = 21;
+  RANKING_TA_TOKYOALL = 22;
+  RANKING_TA_KANAGAWAALL = 23;
+  RANKING_TA_HIROSHIMA = 24;
+  RANKING_VS_STAR = 100;
+  RANKING_GHOST_TROPHY = 101;
+}
+
+message PlaceListQuery {
+  optional uint32 region_id = 1;
+}
+
+message GhostListQuery {
+  required uint32 car_id = 1;
+  optional uint32 area = 2;
+}
+
+message GhostTrailQuery {
+  required uint32 car_id = 1;
+  optional uint32 area = 2;
+  optional uint64 trail_id = 3;
+}
+
+message CarSummaryQuery {
+  optional uint32 region_id = 1;
+  optional uint32 ghost_level = 2;
+  optional uint32 manufacturer = 3;
+  optional uint32 model = 4;
+  optional string name = 5;
+  optional string search_code = 6;
+  optional string last_played_place_id = 7;
+  optional uint32 limit = 8;
+}
+
+message FileListQuery {
+}
+
+message GhostCompetitionTargetQuery {
+  required uint32 competition_id = 1;
+  optional uint32 period_id = 2;
+}
+
+message GhostKoshienTargetQuery {
+  required uint32 koshien_id = 1;
+  required uint32 round_id = 2;
+  required uint32 koshien_period_id = 3;
+  optional uint32 region_id = 4;
+}
+
+message GhostKoshienParticipatingShopQuery {
+  required uint32 koshien_id = 1;
+  required string place_id = 2;
+  required uint32 round_id = 3;
+}
+
+message GhostExpeditionRankingQuery {
+  required uint32 ghost_expedition_id = 1;
+  required string place_id = 2;
+}
+
+message GhostExpeditionParticipantsQuery {
+  required uint32 ghost_expedition_id = 1;
+  required string place_id = 2;
+}
+
+message LockCrownRequest {
+  optional uint32 car_id = 1;
+  optional uint32 area = 2;
+  required uint32 lock_time = 3;
+}
+
+message LockCrownResponse {
+  required ErrorCode error = 1;
+}
+
+message Crown {
+  required uint32 car_id = 1;
+  required uint32 area = 2;
+  optional uint32 unlock_at = 3;
+  optional Car car = 4;
+}
+
+message CrownListQuery {
+  optional uint32 car_id = 1;
+  optional uint32 area = 2;
+}
+
+message CrownList {
+  repeated Crown crowns = 1;
+}
+
+message LockWantedRequest {
+  optional uint32 wanted_id = 1;
+  required uint32 lock_time = 3;
+}
+
+message LockWantedResponse {
+  required ErrorCode error = 1;
+}
+
+message Wanted {
+  required uint32 wanted_id = 1;
+  optional uint32 unlock_at = 3;
+}
+
+message LockWantedListQuery {
+  optional uint32 wanted_id = 1;
+}
+
+message LockWantedList {
+  repeated Wanted wanteds = 1;
+}
+
+message RankingQuery {
+  optional RankingType ranking_type = 1;
+}
+
+message Ranking {
+  message Entry {
+    required uint32 rank = 1;
+    required uint32 result = 2;
+    required uint32 car_id = 3;
+    required string name = 4;
+    required uint32 region_id = 5;
+    required uint32 model = 6;
+    required uint32 visual_model = 7;
+    required uint32 default_color = 8;
+    required uint32 tune_power = 9;
+    required uint32 tune_handling = 10;
+    required string title = 11;
+    required uint32 level = 12;
+  }
+
+  message List {
+    required RankingType ranking_type = 1;
+    repeated Entry top_records = 2;
+  }
+
+  repeated List lists = 1;
+}

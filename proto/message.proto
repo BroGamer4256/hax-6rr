@@ -1,0 +1,255 @@
+syntax = "proto2";
+
+package wm.protobuf;
+
+
+import "wm.proto";
+
+message Course {
+  optional sint32 episode_id = 1;
+  optional sint32 time_attack_id = 2;
+  optional sint32 extreme_id = 3;
+  optional sint32 run_area_id = 4;
+  optional sint32 start_ramp_id = 5;
+  optional sint32 timezone_id = 6;
+  optional sint32 bgm_id = 7;
+  optional bool auto_select = 8;
+  optional bool assist_off = 9;
+  optional int32 player_max = 10;
+  optional string vs_rank_list = 11;
+  optional float dist_base = 12;
+  optional float dist_add = 13;
+  optional float dist_bonus = 14;
+  optional int32 random_seed = 15;
+}
+
+message HeartBeat {
+  optional uint32 frame_number = 1;
+  optional string pcb_serial = 2;
+  optional int32 server_comm = 3;
+}
+
+message DriveCabinetState {
+  optional int32 iccard_rw_state = 1;
+  optional int32 vender_state = 2;
+  optional int32 ffb_state = 3;
+  optional int32 allnet_attestation = 4;
+  optional int32 update_attestation = 5;
+  optional int32 software_revision = 6;
+  optional int32 download_state = 7;
+  optional int32 download_revision = 8;
+  optional int32 download_progress = 9;
+  optional int32 update_revision = 10;
+  optional int32 event_mode = 11;
+  optional int32 event_mode_dist = 12;
+  optional int32 event_mode_2on2 = 13;
+}
+
+message BatchSetting {
+  optional int32 coin_chute = 1;
+  optional int32 buycard_cost = 2;
+  optional int32 game_cost = 3;
+  optional int32 continue_cost = 4;
+  optional int32 fullcourse_cost = 5;
+  optional int32 freeplay = 6;
+  optional int32 wins_and_remains = 7;
+  optional int32 event_mode = 8;
+  optional int32 event_mode_dist = 9;
+  optional int32 close_type = 10;
+  optional int32 close_sun = 11;
+  optional int32 close_mon = 12;
+  optional int32 close_tue = 13;
+  optional int32 close_wed = 14;
+  optional int32 close_thu = 15;
+  optional int32 close_fri = 16;
+  optional int32 close_sat = 17;
+  optional int32 close_day = 18;
+  optional int32 software_revision = 19;
+  optional int32 sync_time = 20;
+  optional int32 event_mode_count = 21;
+  optional uint32 time_zone_type = 22;
+  optional uint32 time_day_light = 23;
+  optional int32 clock_offset = 24;
+  optional string event_mode_serial = 25;
+  optional uint32 event_mode_serial_end_at = 26;
+  optional int32 event_mode_serial_errorcode = 27;
+  optional int32 event_mode_2on2 = 28;
+  optional int32 was_tournament_schedule_set = 29;
+}
+
+message Information {
+  optional uint32 system_mode = 1;
+  optional sint32 sync_id = 2;
+  optional sint32 attract_movie_id = 3;
+  optional sint32 attract_ranking_id = 4;
+  optional int32 attract_random_seed = 5;
+}
+
+message RaceCar {
+  required Car car = 1;
+  optional uint32 rank = 2;
+  optional uint32 vs_star_count = 3;
+  optional uint32 vs_consecutive_wins = 4;
+  optional uint32 vs_medals_rank_level = 5;
+  optional bool was_cleared_story_whithout_losing = 6;
+  optional uint32 rg_trophy = 7;
+  repeated uint32 rg_regions = 8;
+  optional uint32 rg_score = 9;
+}
+
+message TournamentCar {
+  optional string name = 1;
+  optional sint32 car_id = 2;
+  optional sint32 entry_number = 3;
+}
+
+message TournamentCarList {
+  optional TournamentCar car_00 = 1;
+  optional TournamentCar car_01 = 2;
+  optional TournamentCar car_02 = 3;
+  optional TournamentCar car_03 = 4;
+  optional TournamentCar car_04 = 5;
+  optional TournamentCar car_05 = 6;
+  optional TournamentCar car_06 = 7;
+  optional TournamentCar car_07 = 8;
+  optional TournamentCar car_08 = 9;
+  optional TournamentCar car_09 = 10;
+  optional TournamentCar car_10 = 11;
+  optional TournamentCar car_11 = 12;
+  optional TournamentCar car_12 = 13;
+  optional TournamentCar car_13 = 14;
+  optional TournamentCar car_14 = 15;
+  optional TournamentCar car_15 = 16;
+  optional TournamentCar car_16 = 17;
+  optional TournamentCar car_17 = 18;
+  optional TournamentCar car_18 = 19;
+  optional TournamentCar car_19 = 20;
+  optional TournamentCar car_20 = 21;
+  optional TournamentCar car_21 = 22;
+  optional TournamentCar car_22 = 23;
+  optional TournamentCar car_23 = 24;
+  optional TournamentCar car_24 = 25;
+  optional TournamentCar car_25 = 26;
+  optional TournamentCar car_26 = 27;
+  optional TournamentCar car_27 = 28;
+  optional TournamentCar car_28 = 29;
+  optional TournamentCar car_29 = 30;
+  optional TournamentCar car_30 = 31;
+  optional TournamentCar car_31 = 32;
+}
+
+message TournamentRaceData {
+  optional uint32 race_number = 1;
+  optional uint32 round_number = 2;
+  optional uint32 game_number = 3;
+  required sint32 player_00 = 4;
+  required sint32 player_01 = 5;
+  required sint32 player_02 = 6;
+  required sint32 player_03 = 7;
+  required sint32 result_00 = 8;
+  required sint32 result_01 = 9;
+  required sint32 result_02 = 10;
+  required sint32 result_03 = 11;
+}
+
+message TournamentRaceDataList {
+  optional TournamentRaceData race_data_00 = 1;
+  optional TournamentRaceData race_data_01 = 2;
+  optional TournamentRaceData race_data_02 = 3;
+  optional TournamentRaceData race_data_03 = 4;
+  optional TournamentRaceData race_data_04 = 5;
+  optional TournamentRaceData race_data_05 = 6;
+  optional TournamentRaceData race_data_06 = 7;
+  optional TournamentRaceData race_data_07 = 8;
+  optional TournamentRaceData race_data_08 = 9;
+  optional TournamentRaceData race_data_09 = 10;
+  optional TournamentRaceData race_data_10 = 11;
+  optional TournamentRaceData race_data_11 = 12;
+  optional TournamentRaceData race_data_12 = 13;
+  optional TournamentRaceData race_data_13 = 14;
+  optional TournamentRaceData race_data_14 = 15;
+  optional TournamentRaceData race_data_15 = 16;
+  optional TournamentRaceData race_data_16 = 17;
+  optional TournamentRaceData race_data_17 = 18;
+  optional TournamentRaceData race_data_18 = 19;
+  optional TournamentRaceData race_data_19 = 20;
+  optional TournamentRaceData race_data_20 = 21;
+  optional TournamentRaceData race_data_21 = 22;
+  optional TournamentRaceData race_data_22 = 23;
+  optional TournamentRaceData race_data_23 = 24;
+  optional TournamentRaceData race_data_24 = 25;
+  optional TournamentRaceData race_data_25 = 26;
+  optional TournamentRaceData race_data_26 = 27;
+  optional TournamentRaceData race_data_27 = 28;
+  optional TournamentRaceData race_data_28 = 29;
+  optional TournamentRaceData race_data_29 = 30;
+  optional TournamentRaceData race_data_30 = 31;
+  optional TournamentRaceData race_data_31 = 32;
+  optional TournamentRaceData race_data_32 = 33;
+  optional TournamentRaceData race_data_33 = 34;
+  optional TournamentRaceData race_data_34 = 35;
+}
+
+message TournamentResult {
+  optional Car car = 1;
+  required sint32 rank = 2;
+  required sint32 entry_number = 3;
+}
+
+message TournamentResultList {
+  optional TournamentResult result_00 = 1;
+  optional TournamentResult result_01 = 2;
+  optional TournamentResult result_02 = 3;
+  optional TournamentResult result_03 = 4;
+}
+
+message Tournament {
+  required bool is_enable_tournament = 1;
+  required bool is_clear_tournament = 2;
+  optional bool is_entry_player_only = 3;
+  optional TournamentCarList car_list = 4;
+  optional TournamentRaceDataList race_data_list = 5;
+  optional bool is_tournament_on = 6;
+  optional uint32 hold_year = 7;
+  optional uint32 hold_month = 8;
+  optional uint32 hold_day = 9;
+  optional uint32 entry_hour = 10;
+  optional uint32 entry_minute = 11;
+  optional uint32 tournament_start_hour = 12;
+  optional uint32 tournament_start_minute = 13;
+  optional uint32 competition_num = 14;
+  optional uint32 participant_num = 15;
+  optional uint32 surviver_num_of_first_race = 16;
+  optional uint32 now_round = 17;
+  optional sint32 playing_game_number = 18;
+  optional bool is_confirm_tournament_result = 19;
+  optional bool is_tournament_entry = 20;
+  optional TournamentResultList result_list = 21;
+  optional bool has_commendation_started = 22;
+  optional bool is_commendation_rank_appeared = 23;
+  optional bool is_commendation_ended = 24;
+  optional bool is_next_rank = 25;
+  optional uint32 commendation_page = 26;
+  optional bool show_commendation_again = 27;
+}
+
+message TrialIntrusion {
+  optional int32 matching_state = 1;
+  optional string card_chip_id = 2;
+}
+
+message Message {
+  optional bytes race_packet = 1;
+  optional bytes race_car = 2;
+  optional Course course = 3;
+  optional int32 vs_ok = 4;
+  optional HeartBeat heart_beat = 5;
+  optional int32 batch_setting_state = 6;
+  optional DriveCabinetState drive_cabinet_state = 7;
+  optional BatchSetting batch_setting = 8;
+  optional Information information = 9;
+  optional GameFeatureVersion feature_version = 10;
+  optional Tournament tournament = 11;
+  optional TrialIntrusion trial_intrusion = 12;
+}
+

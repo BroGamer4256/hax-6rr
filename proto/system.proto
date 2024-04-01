@@ -1,0 +1,93 @@
+syntax = "proto2";
+
+package sys.protobuf;
+
+
+import "wm.proto";
+
+enum State {
+  State_None = 0;
+  State_Checking = 1;
+  State_NG = 2;
+  State_OK = 3;
+}
+
+enum BanaCoinPaymentState {
+  BC_SUCCESS = 0;
+  BC_SHORTAGE = 1;
+  BC_BNID_MEMBER_ERROR = 2;
+  BC_UNKNOWN_ERROR = 3;
+  BC_BNID_SYSTEM_ERROR = 4;
+  BC_BNID_VERIFY_ERROR = 5;
+  BC_BNID_EXECUTE_ERROR = 6;
+  BC_BNID_SERVER_UNAVAILABLE = 99;
+}
+
+message Log {
+  message Error {
+    required uint32 timestamp = 1;
+    required uint32 code = 2;
+  }
+
+  repeated Error errors = 1;
+}
+
+message BanaCoinPaymentLog {
+  message Payment {
+    required uint32 date = 1;
+    optional string contact_number = 2;
+    required BanaCoinPaymentState state = 3;
+    optional uint32 cost = 4;
+    required string access_code = 6;
+    required string person_id = 7;
+  }
+
+  repeated Payment payments = 1;
+}
+
+message Operation {
+  optional uint32 authorization_at = 1;
+  optional wm.protobuf.GameFeatureVersion feature_version = 2;
+}
+
+message PreviousPlaceID {
+  optional string place_id = 1;
+  optional uint32 update_at = 2;
+}
+
+message Status {
+  required State state = 1;
+  optional string name = 2;
+  optional uint32 address = 3;
+  optional int32 value = 4;
+  optional int32 value2 = 5;
+}
+
+message Command {
+  optional uint32 sequence = 1;
+  optional string ntp = 2;
+  optional string check_cable = 3;
+  optional string renew_dhcp = 4;
+  optional uint32 set_date = 5;
+  optional string sync_date = 6;
+  repeated uint32 ping = 7;
+  optional uint32 trace_route = 8;
+  optional string check_packet = 9;
+  optional string reboot = 10;
+  optional string check_pkg = 11;
+}
+
+message Reply {
+  optional uint32 sequence = 1;
+  optional Status ntp = 2;
+  optional Status check_cable = 3;
+  optional Status renew_dhcp = 4;
+  optional Status set_date = 5;
+  optional Status sync_date = 6;
+  repeated Status ping = 7;
+  optional Status trace_route = 8;
+  optional Status check_packet = 9;
+  optional Status reboot = 10;
+  optional Status check_pkg = 11;
+}
+
