@@ -14,11 +14,18 @@ where
 	if !car_items.is_empty() {
 		ui.heading("Current items");
 		for item in car_items.iter() {
-			ui.label(T::from_u32(item.item_id).unwrap().to_string());
+			if let Some(item) = T::from_u32(item.item_id) {
+				ui.label(item.to_string());
+			}
 		}
 	}
 	let selected = match new_item_buf.parse() {
-		Ok(id) => T::from_u32(id).unwrap().to_string(),
+		Ok(id) => {
+			match T::from_u32(id) {
+				Some(item) => item.to_string(),
+				None => String::new()
+			}
+		},
 		Err(_) => String::new(),
 	};
 
