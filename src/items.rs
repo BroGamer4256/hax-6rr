@@ -78,7 +78,7 @@ fn show_vs_items(car_items: &Vec<&wm::CarItem>, ui: &mut egui::Ui, new_item_buf:
 			match id {
 				100 => String::from("Anniversary"),
 				101 => String::from("Halloween"),
-				_ => panic!("Unknown vs aura"),
+				_ => String::from("Invalid aura"),
 			}
 		} else {
 			format!("{} {}", wm::VS_GRADES[(id - 1) / 3], ((id - 1) % 3) + 1)
