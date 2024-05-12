@@ -74,7 +74,7 @@ where
 
 fn show_vs_items(car_items: &Vec<&wm::CarItem>, ui: &mut egui::Ui, new_item_buf: &mut String) {
 	fn get_vs_aura(id: usize) -> String {
-		if id > 90 {
+		if id > wm::VS_GRADES.len() * 3 {
 			match id {
 				100 => String::from("Anniversary"),
 				101 => String::from("Halloween"),
