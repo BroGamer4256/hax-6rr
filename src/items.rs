@@ -20,11 +20,9 @@ where
 		}
 	}
 	let selected = match new_item_buf.parse() {
-		Ok(id) => {
-			match T::from_u32(id) {
-				Some(item) => item.to_string(),
-				None => String::new()
-			}
+		Ok(id) => match T::from_u32(id) {
+			Some(item) => item.to_string(),
+			None => String::new(),
 		},
 		Err(_) => String::new(),
 	};

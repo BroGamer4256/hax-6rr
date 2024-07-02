@@ -4,24 +4,24 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.73"
-eframe = { version = "0.22.0", default-features = false, features = [
+anyhow = "1.0.86"
+eframe = { version = "0.27.2", default-features = false, features = [
     "accesskit",
     "glow",
     "wayland",
 ] }
-num-derive = "0.4.0"
-num-traits = "0.2.16"
-prost = "0.11.9"
-reqwest = "0.11.18"
-serde = { version = "1.0.183", features = ["derive"] }
+num-derive = "0.4.2"
+num-traits = "0.2.19"
+prost = "0.12.6"
+reqwest = "0.12.5"
+serde = { version = "1.0.203", features = ["derive"] }
 serde_ini = "0.2.0"
-strum = { version = "0.25.0", features = ["derive"] }
+strum = { version = "0.26.3", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }
-url = "2.4.1"
+url = "2.5.2"
 
 [build-dependencies]
-prost-build = "0.11.9"
+prost-build = "0.12.6"
 
 [profile.release]
 lto = true

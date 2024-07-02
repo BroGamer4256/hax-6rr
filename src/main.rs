@@ -11,7 +11,7 @@ pub mod wm;
 
 fn main() {
 	let native_options = eframe::NativeOptions {
-		drag_and_drop_support: true,
+		viewport: egui::ViewportBuilder::default().with_drag_and_drop(true),
 		..Default::default()
 	};
 
@@ -164,7 +164,9 @@ impl eframe::App for App {
 									self.server_buf.insert_str(0, "https://")
 								}
 								if let Some(mut server) = Url::parse(&self.server_buf).ok() {
-									if server.port().is_none() && server.set_port(Some(9002)).is_err() {
+									if server.port().is_none()
+										&& server.set_port(Some(9002)).is_err()
+									{
 										return;
 									}
 									self.server = Some(server);
@@ -178,7 +180,8 @@ impl eframe::App for App {
 							}
 						} else if self.car.is_none() {
 							let car =
-								wait_select_car(&self.cars, ui, self.server.as_ref().unwrap()).await;
+								wait_select_car(&self.cars, ui, self.server.as_ref().unwrap())
+									.await;
 							if let Some(car) = car {
 								self.car = Some(car.car);
 								self.car_setting = Some(car.setting);
