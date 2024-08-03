@@ -20,6 +20,34 @@ pub async fn send_request<I: prost::Message, O: prost::Message + Default>(
 		.header("cache-control", "no-cache")
 		.header("accept", "application/x-protobuf; revision=12056")
 		.header("content-type", "application/x-protobuf; revision=12056")
+		.timeout(std::time::Duration::from_secs(15))
+		.send()
+		.await
+		.map_err(|err| dbg!(err))?;
+
+	if res.status() != 200 {
+		dbg!(res);
+		return Err(anyhow::format_err!("Request failed"));
+	}
+	let bytes = res.bytes().await.map_err(|err| dbg!(err))?;
+	Ok(O::decode(bytes).map_err(|err| dbg!(err))?)
+}
+
+pub async fn send_resource_request<O: prost::Message + Default>(
+	server: &Url,
+	path: &str,
+) -> anyhow::Result<O> {
+	let client = reqwest::Client::builder()
+		.danger_accept_invalid_certs(true)
+		.build()?;
+
+	let res = client
+		.get(dbg!(format!("{server}wmmt6/{path}")))
+		.header("user-agent", "V388 Client; 285013501138")
+		.header("cache-control", "no-cache")
+		.header("accept", "application/x-protobuf; revision=12056")
+		.header("content-type", "application/x-protobuf; revision=12056")
+		.timeout(std::time::Duration::from_secs(15))
 		.send()
 		.await
 		.map_err(|err| dbg!(err))?;
